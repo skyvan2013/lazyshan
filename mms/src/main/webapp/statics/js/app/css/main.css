@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+/* main begin*/
+
+* {
+	color: #666;
+}
+
+a {
+	text-decoration: none;	
+}
+a:hover{
+	text-decoration: underline;
+}
+/*main end */

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"  
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<urlrewrite>
+	<rule >
+		<from>^/js/(.*)$</from>
+		<to type="forward" last="true">/statics/js/$1</to>
+	</rule>
+	<rule>
+		<from>^/favicon.ico$</from>
+		<to type="forward" last="true">/statics/favicon.ico</to>
+	</rule>
+		<rule>
+		<from>^/.*\..*$</from>
+		<to>/statics/error.html</to>
+	</rule>
+</urlrewrite>  

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<sitemesh:write property="meta"></sitemesh:write>
+<title>莱瑞轩协同办公系统 - <sitemesh:write property="title"></sitemesh:write></title>
+<link rel="stylesheet" type="text/css" href="/js/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="/js/easyui/themes/icon.css">
+<script type="text/javascript" src="/js/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="/js/app/css/main.css">
+<style type="text/css">
+.nav ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.nav ul>li {
+	padding: 5px;
+	background-color: #F4F8FF;
+	border-bottom: 1px solid #CCC;
+}
+
+.nav ul>li a {
+	display: block;
+	padding-left: 5px;
+}
+
+.nav ul>li a:hover {
+	text-decoration: none;
+}
+
+.nav .accordion-header-selected {
+	background-color: #E0ECFF
+}
+</style>
+<sitemesh:write property="head"></sitemesh:write>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:true,minHeight:60,maxHeight:60" style="overflow:hidden">
+		<h1>莱瑞轩协同办公平台</h1>
+	</div>
+	<div data-options="region:'west',split:true,maxWidth:'140',maxWidth:'140'" style="width: 150px;">
+		<div class="easyui-accordion nav" data-options="fit:true,border:false,split:true">
+			<div title="销售管理">
+				<ul>
+					<li><a href="/order">订单管理</a></li>
+					<li><a href="/cs">售后管理</a></li>
+				</ul>
+			</div>
+			<div title="物流信息管理" style="padding: 10px;">
+				<ul>
+					<li><a href="#">订单管理</a></li>
+					<li><a href="#">售后管理</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div data-options="region:'center'">
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'center',border:false,title:'<sitemesh:write property="title"></sitemesh:write>',iconCls:'icon-tip'" style="height: 300px;padding:10px 10px;">
+				<sitemesh:write property="body"></sitemesh:write>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

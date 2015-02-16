@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lazyshan.oa.mms.mapper.ProductMapper">
+
+	<!-- 添加一个商品 -->
+	<insert id="addProduct" parameterType="com.lazyshan.oa.mms.model.Product" >
+		insert into product (product_model,product_name,product_parameter,production_cycle,stock_quantity)
+		values(#{productModel}, #{productName}, #{productParam}, #{productionCycle}, #{stockQuantity})
+	</insert>
+	
+</mapper>
+

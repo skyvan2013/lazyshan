@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.lazyshan.oa.mms.mapper.ProductTypeMapper">
+	<select id="listProductTypes" resultType="ProductType">
+		select product_type as productType , product_type_desc as productTypeDesc,(select count(*) from product where product.product_type=product_type.product_type) as productCount from product_type
+	</select>
+</mapper>
