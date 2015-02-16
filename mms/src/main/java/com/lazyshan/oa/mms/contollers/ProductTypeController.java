@@ -1,5 +1,8 @@
 package com.lazyshan.oa.mms.contollers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -30,6 +33,7 @@ public class ProductTypeController {
 
 	/**
 	 * 跳转到列表页面
+	 * 
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
@@ -37,16 +41,32 @@ public class ProductTypeController {
 		log.info("执行ProductTypeController.list");
 		return new ModelAndView("product/ptlist");
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="ajax/listAllProductType")
-	public OutPager<ProductType>  list(Pager<ProductType> pager){
+	@RequestMapping(value = "ajax/listAllProductType")
+	public OutPager<ProductType> list(Pager<ProductType> pager) {
 		productTypeService.listProductType(pager);
 		return pager.toOutPager();
 	}
+	/**
+	 * 编辑或添加产品类型
+	 * @param productType 产品类型ID，如果为空则是添加
+	 * @return
+	 */
+	@RequestMapping("editpt")
+	public String toEdit(String productType) {
+		return "product/editProductType";
+	}
 	
+	@RequestMapping("savept")
+	@ResponseBody
+	public Map<String,String> save(ProductType productType,Map<String,String> map){
+		System.out.println(productType);
+		map.put("result", "success");
+		return  map;
+	}
 }

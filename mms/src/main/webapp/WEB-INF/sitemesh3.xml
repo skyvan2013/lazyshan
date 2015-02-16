@@ -2,4 +2,6 @@
 
 <sitemesh>
   <mapping path="/*" decorator="/sitemesh/decorator.html"/>
+  
+  <mapping path="/pt/editpt" exclue="true"/>
 </sitemesh>
