@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lazyshan.oa.mms.common.LocalJSONResultMapBuilder;
 import com.lazyshan.oa.mms.common.Pager;
 import com.lazyshan.oa.mms.common.Pager.OutPager;
 import com.lazyshan.oa.mms.model.ProductType;
@@ -52,21 +53,38 @@ public class ProductTypeController {
 		productTypeService.listProductType(pager);
 		return pager.toOutPager();
 	}
+
 	/**
 	 * 编辑或添加产品类型
-	 * @param productType 产品类型ID，如果为空则是添加
+	 * 
+	 * @param productType
+	 *            产品类型ID，如果为空则是添加
 	 * @return
 	 */
 	@RequestMapping("editpt")
-	public String toEdit(String productType) {
-		return "product/editProductType";
+	public ModelAndView toEdit(ProductType productType, ModelAndView mv) {
+		if (productType.getProductType() != null && productType.getProductType() > 0) {
+			ProductType pt = productTypeService.getSingleProductType(productType.getProductType());
+			mv.getModel().put("pt", pt);
+		}
+		mv.setViewName("product/editProductType");
+		return mv;
 	}
-	
-	@RequestMapping("savept")
+
+	@RequestMapping(value = "savept")
 	@ResponseBody
-	public Map<String,String> save(ProductType productType,Map<String,String> map){
-		System.out.println(productType);
-		map.put("result", "success");
-		return  map;
+	public Map<String, Object> save(ProductType productType) {
+		productTypeService.saveOrUpdateProductType(productType);
+		return LocalJSONResultMapBuilder.getResultMap(true, "保存成功!");
+	}
+
+	@RequestMapping(value = "delpts")
+	@ResponseBody
+	public Map<String, Object> deleteProductTypes(int[] pts) {
+		boolean result = productTypeService.deleteProductTypes(pts);
+		if (result == true)
+			return LocalJSONResultMapBuilder.getResultMap(true, "删除成功!");
+		else
+			return LocalJSONResultMapBuilder.getResultMap(false, "删除失败!");
 	}
 }

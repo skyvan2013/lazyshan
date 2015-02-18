@@ -49,13 +49,13 @@
 			list.append(toolbar);
 			if (options.showDeleteButton == true) { // 添加删除按钮
 				$(
-						"<a id='del_btn' href='####' >"
+						"<a id='del_btn' href='javascript:;' >"
 								+ (options.delBtnName != undefined ? options.delBtnName
 										: "删除") + "</a>").appendTo(toolbar);
 			}
 			if (options.showEditButton == true) { // 添加编辑按钮
 				$(
-						"<a id='edit_btn' href='####'>"
+						"<a id='edit_btn' href='javascript:;'>"
 								+ (options.editBtnName != undefined ? options.editBtnName
 										: "编辑") + "</a>").appendTo(toolbar);
 				$("<span>&nbsp;</span>").insertBefore("#edit_btn");
@@ -70,7 +70,7 @@
 			}
 			if (options.showAddButton == true) { // 添加新增按钮
 				$(
-						"<a id='add_btn' href='####' >"
+						"<a id='add_btn' href='javascript:;' >"
 								+ (options.addBtnName != undefined ? options.addBtnName
 										: "新增") + "</a>").appendTo(toolbar);
 				$("<span>&nbsp;</span>").insertBefore("#add_btn");
@@ -105,7 +105,9 @@
 			striped : true,
 			singleSelect : false,
 			collapsible : true,
-			fitColumns : true
+			fitColumns : true,
+			pageSize : 15,
+			pageList : [15,30,45,60,75]
 		}
 		options = $.extend(options, otherDefaultOptions);
 		// 打开渲染列表

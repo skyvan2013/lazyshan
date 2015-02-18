@@ -7,4 +7,21 @@
 	<select id="listProductTypes" resultType="ProductType">
 		select product_type as productType , product_type_desc as productTypeDesc,(select count(*) from product where product.product_type=product_type.product_type) as productCount from product_type
 	</select>
+	
+	<insert id="addProductType"  parameterType="ProductType">
+		insert into product_type(product_type_desc) values(#{productTypeDesc})
+	</insert>
+	<update id="updateProductType"  parameterType="ProductType">
+		update product_type set product_type_desc = #{productTypeDesc} where product_type = #{productType}
+	</update>
+	
+	<select id="getSingleProductType" parameterType="java.lang.Integer" resultType="ProductType">
+		select product_type as productType , product_type_desc as productTypeDesc from product_type where product_type = #{productType}
+	</select>
+	<delete id="deleteProductTypes" parameterType="int[]">
+		delete from product_type where product_type in 
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
 </mapper>
