@@ -30,7 +30,6 @@ public class MyInterceptor implements Interceptor {
 		Object parameter = invocation.getArgs()[1];
 		BoundSql boundSql = mappedStatement.getBoundSql(parameter);
 		String originalSql = boundSql.getSql().trim();
-		Object parameterObject = boundSql.getParameterObject();
 		Pager pager = toPage(parameter);
 		if (pager != null) {
 
