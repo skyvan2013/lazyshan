@@ -12,4 +12,30 @@ public interface ProductTypeMapper {
 	 * @return
 	 */
 	public List<ProductType> listProductTypes(Pager<ProductType> pager );
+	/**
+	 * 插入一个产品类别数据
+	 * @param pt
+	 * @return
+	 */
+	public boolean addProductType(ProductType pt);
+	
+	/**
+	 * 更新一个产品类别数据
+	 * @param pt
+	 * @return
+	 */
+	public boolean updateProductType(ProductType pt);
+	
+	/**
+	 * 取得一个商品
+	 * @param productType
+	 * @return
+	 */
+	public ProductType getSingleProductType(Integer productType);
+	/**
+	 * 删除商品类别
+	 * @param ProductTypes
+	 * @return
+	 */
+	public boolean deleteProductTypes(int[] productTypes);
 }

@@ -18,4 +18,23 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	public List<ProductType> listProductType(Pager<ProductType> pager) {
 		return productTypeMapper.listProductTypes(pager);
 	}
+
+	@Override
+	public ProductType getSingleProductType(Integer productType) {
+		return productTypeMapper.getSingleProductType(productType);
+	}
+
+	@Override
+	public boolean saveOrUpdateProductType(ProductType pt) {
+		if(pt.getProductType() != null &&  pt.getProductType()>0){
+			return productTypeMapper.updateProductType(pt);
+		}else {
+			return productTypeMapper.addProductType(pt);
+		}
+	}
+
+	@Override
+	public boolean deleteProductTypes(int[] productTypes) {
+		return productTypeMapper.deleteProductTypes(productTypes);
+	}
 }
