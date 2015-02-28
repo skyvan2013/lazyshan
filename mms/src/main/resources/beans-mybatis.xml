@@ -9,7 +9,7 @@
 			<value>lazyshan</value>
 		</property>
 		<property name="password">
-			<value>lairuixuan</value>
+			<value>lazyshan</value>
 		</property>
 		<property name="url">
 			<value>jdbc:mysql://localhost:3306/lazyshan</value>
