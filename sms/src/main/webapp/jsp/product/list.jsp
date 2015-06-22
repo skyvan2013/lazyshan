@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>商品类别管理</title>
+<script type="text/javascript" src="/statics/js/easyui/plugins/treegrid-dnd.js"></script>
 </head>
 <body>
-	<table id="tg">
+	<table id="tg" style="height: 500px;">
 	</table>
 	<div id="mm" class="easyui-menu" style="width: 120px;">
 		<div onclick="append()" data-options="iconCls:'icon-add'">添加子分类</div>
@@ -17,7 +18,7 @@
 		<div onclick="collapse()">收 起</div>
 		<div onclick="expand()">展 开</div>
 	</div>
-	<script type="text/javascript" src="/statics/js/easyui/datagrid-dnd.js"></script>
+	<div id="save" style="display: none;"></div>
 	<script type="text/javascript">
 		var pageConfig = {
 			//工具条设置
@@ -36,26 +37,24 @@
 			columns : [ [ {
 				title : '分类名称',
 				field : 'name',
-				width : 350,
-				fixed : true
+				width : "20%"
 			}, {
 				field : 'persons',
 				title : '分类级别',
-				width : 120,
 				align : 'center',
-				fixed : true
+				width: "10%"
 			}, {
 				field : 'begin',
-				title : '    分类备注',
-				width : 80,
+				title : '分类备注',
 				halign : 'center',
+				width: "70%",
 				styler : function() {
 					return "padding-left:10px;"
 				}
 			} ] ]
 
 		};
-		var idIndex = 100;
+		var idIndex = 1;
 		function appendTop() {
 			idIndex++;
 			var d1 = new Date();
@@ -63,12 +62,12 @@
 			d2.setMonth(d2.getMonth() + 1);
 			$('#tg').treegrid('append', {
 				data : [ {
-					id : idIndex,
-					name : 'New Task' + idIndex,
-					persons : parseInt(Math.random() * 10),
-					begin : $.fn.datebox.defaults.formatter(d1),
-					end : $.fn.datebox.defaults.formatter(d2),
-					progress : parseInt(Math.random() * 100)
+					id : "new" + idIndex,
+					name : '',
+					persons : '',
+					begin : '',
+					end : '',
+					progress : ''
 				} ]
 			})
 		}
@@ -88,20 +87,34 @@
 				iconCls : 'icon-ok',
 				animate : true,
 				collapsible : false,
-				fitColumns : true,
+				fitColumns : false,
 				url : 'sd/treegrid',
 				method : 'get',
 				idField : 'id',
+				pagination : false,
 				lines : true,
 				onContextMenu : onContextMenu,
 				toolbar : pageConfig.toolbar,
 				pageList : [ 1, 30, 45, 100 ],
 				pageSize : 1,
 				columns : pageConfig.columns,
-				onLoadSuccess:function(){
-					alert(3);
-					$(this).datagrid('enableDnd');
+				onLoadSuccess : function() {
+					$(this).treegrid('enableDnd');
 				}
+			}).datagrid("getPager").pagination({
+				buttons : [ {
+					text : "编辑",
+					iconCls : 'icon-save',
+					handler : function() {
+						alert('edit')
+					}
+				}, '-', {
+					text : "保存",
+					iconCls : 'icon-save',
+					handler : function() {
+						alert('save')
+					}
+				} ]
 			});
 		});
 	</script>

@@ -1,5 +1,5 @@
 
 
 <sitemesh>
-  <mapping path="/*" decorator="/sitemesh/decorator.html"/>
+  <mapping path="/*" decorator="/sitemesh/ACEdecorator.html"/>
 </sitemesh>
