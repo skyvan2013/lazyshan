@@ -1,122 +1,143 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>商品类别管理</title>
-<script type="text/javascript" src="/statics/js/easyui/plugins/treegrid-dnd.js"></script>
+<title>首页</title>
+
+<script src="/statics/assets/js/jquery.nestable.min.js"></script>
+<script type="text/javascript">
+	jQuery(function($) {
+
+		$('.dd').nestable();
+		$('.dd').on('change', function() {
+			alert($(".dd-item.dd2-item").data("id"))
+		});
+
+		$('.dd-handle a').on('mousedown', function(e) {
+			e.stopPropagation();
+		});
+
+		$('[data-rel="tooltip"]').tooltip();
+
+	});
+</script>
+<style type="text/css">
+.dd2-handle {
+	cursor: move;
+}
+</style>
 </head>
 <body>
-	<table id="tg" style="height: 500px;">
-	</table>
-	<div id="mm" class="easyui-menu" style="width: 120px;">
-		<div onclick="append()" data-options="iconCls:'icon-add'">添加子分类</div>
-		<div class="menu-sep"></div>
-		<div onclick="removeIt()" data-options="iconCls:'icon-remove'">刪除分类</div>
-		<div onclick="removeIt()" data-options="iconCls:'icon-edit'">编辑分类</div>
-		<div class="menu-sep"></div>
-		<div onclick="collapse()">收 起</div>
-		<div onclick="expand()">展 开</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="dd dd-draghandle">
+				<c:if test="${pts.size() > 0}">
+					<ol class="dd-list">
+						<c:forEach items="${pts}" var="pt">
+							<li class="dd-item dd2-item" data-id="${pt.typeId}">
+								<div class="dd-handle dd2-handle">
+									<i class="icon-reorder blue bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i>
+								</div>
+								<div class="dd2-content">
+									<a data-rel="tooltip" data-placement="left" title="删除" href="#" class="badge badge-primary radius-5 tooltip-info pull-right white no-hover-underline"> <i class="normal-icon bigger-130 icon-trash"> </i>
+									</a>
+								</div>
+								<!-- 简单处理，顶多两级分类 -->
+								<c:if test="${pt.productTypes.size() > 0 }">
+									<ol class="dd-list">
+									<c:forEach items="${pt.productTypes}" var="pt2">
+										<li class="dd-item dd2-item" data-id="${pt2.typeId }">
+											<div class="dd-handle dd2-handle">
+												<i class="icon-reorder blue bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i>
+											</div>
+											<div class="dd2-content">
+												<a data-rel="tooltip" data-placement="left" title="删除" href="#" class="badge badge-primary radius-5 tooltip-info pull-right white no-hover-underline"> <i class="normal-icon bigger-130 icon-trash"> </i>
+												</a>
+											</div>
+										</li>
+									</c:forEach>
+									</ol>
+								</c:if>
+							</li>
+						</c:forEach>
+					</ol>
+				</c:if>
+					<!-- 					<li class="dd-item dd2-item" data-id="14"> -->
+					<!-- 						<div class="dd-handle dd2-handle"> -->
+					<!-- 							<i class="normal-icon icon-time pink bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="dd2-content">Recent Posts</div> -->
+					<!-- 					</li> -->
+
+					<!-- 					<li class="dd-item dd2-item" data-id="15"> -->
+					<!-- 						<div class="dd-handle dd2-handle"> -->
+					<!-- 							<i class="normal-icon icon-signal orange bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="dd2-content">Statistics</div> -->
+
+					<!-- 						<ol class="dd-list"> -->
+					<!-- 							<li class="dd-item dd2-item" data-id="16"> -->
+					<!-- 								<div class="dd-handle dd2-handle"> -->
+					<!-- 									<i class="normal-icon icon-user red bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i> -->
+					<!-- 								</div> -->
+					<!-- 								<div class="dd2-content">Active Users</div> -->
+					<!-- 							</li> -->
+
+					<!-- 							<li class="dd-item dd2-item dd-colored" data-id="17"> -->
+					<!-- 								<div class="dd-handle dd2-handle btn-info"> -->
+					<!-- 									<i class="normal-icon icon-edit bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i> -->
+					<!-- 								</div> -->
+					<!-- 								<div class="dd2-content btn-info no-hover">Published Articles</div> -->
+					<!-- 							</li> -->
+
+					<!-- 							<li class="dd-item dd2-item" data-id="18"> -->
+					<!-- 								<div class="dd-handle dd2-handle"> -->
+					<!-- 									<i class="normal-icon icon-eye-open green bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i> -->
+					<!-- 								</div> -->
+					<!-- 								<div class="dd2-content">Visitors</div> -->
+					<!-- 							</li> -->
+					<!-- 						</ol> -->
+					<!-- 					</li> -->
+
+					<!-- 					<li class="dd-item dd2-item" data-id="19"> -->
+					<!-- 						<div class="dd-handle dd2-handle"> -->
+					<!-- 							<i class="normal-icon icon-reorder blue bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i> -->
+					<!-- 						</div> -->
+					<!-- 						<div class="dd2-content">Menu</div> -->
+					<!-- 					</li> -->
+				
+			</div>
+		</div>
+		<div class="vspace-sm-16"></div>
+
 	</div>
-	<div id="save" style="display: none;"></div>
-	<script type="text/javascript">
-		var pageConfig = {
-			//工具条设置
-			toolbar : [ {
-				text : '添加一级分类',
-				iconCls : 'icon-add',
-				handler : appendTop
-			}, '-', {
-				text : '保存',
-				iconCls : 'icon-save',
-				handler : function() {
-					alert('save')
-				}
-			} ],
-			//表格列设置
-			columns : [ [ {
-				title : '分类名称',
-				field : 'name',
-				width : "20%"
-			}, {
-				field : 'persons',
-				title : '分类级别',
-				align : 'center',
-				width: "10%"
-			}, {
-				field : 'begin',
-				title : '分类备注',
-				halign : 'center',
-				width: "70%",
-				styler : function() {
-					return "padding-left:10px;"
-				}
-			} ] ]
 
-		};
-		var idIndex = 1;
-		function appendTop() {
-			idIndex++;
-			var d1 = new Date();
-			var d2 = new Date();
-			d2.setMonth(d2.getMonth() + 1);
-			$('#tg').treegrid('append', {
-				data : [ {
-					id : "new" + idIndex,
-					name : '',
-					persons : '',
-					begin : '',
-					end : '',
-					progress : ''
-				} ]
-			})
-		}
+					<ol  class="dd-list hide" data-template="true">
+							<li class="dd-item dd2-item" data-id="">
+								<div class="dd-handle dd2-handle">
+									<i class="icon-reorder blue bigger-130"></i> <i class="drag-icon icon-move bigger-125"></i>
+								</div>
+								<div class="dd2-content">
+									<a data-rel="tooltip" data-placement="left" title="删除" href="#" class="badge badge-primary radius-5 tooltip-info pull-right white no-hover-underline"> <i class="normal-icon bigger-130 icon-trash"> </i>
+									</a>
+								</div>
+							</li>
+					</ol>
 
-		function onContextMenu(e, row) {
-			e.preventDefault();
-			$(this).treegrid('select', row.id);
-			$('#mm').menu('show', {
-				left : e.pageX,
-				top : e.pageY
-			});
-		}
 
-		$(document).ready(function() {
-			$('#tg').treegrid({
-				treeField : 'name',
-				iconCls : 'icon-ok',
-				animate : true,
-				collapsible : false,
-				fitColumns : false,
-				url : 'sd/treegrid',
-				method : 'get',
-				idField : 'id',
-				pagination : false,
-				lines : true,
-				onContextMenu : onContextMenu,
-				toolbar : pageConfig.toolbar,
-				pageList : [ 1, 30, 45, 100 ],
-				pageSize : 1,
-				columns : pageConfig.columns,
-				onLoadSuccess : function() {
-					$(this).treegrid('enableDnd');
-				}
-			}).datagrid("getPager").pagination({
-				buttons : [ {
-					text : "编辑",
-					iconCls : 'icon-save',
-					handler : function() {
-						alert('edit')
-					}
-				}, '-', {
-					text : "保存",
-					iconCls : 'icon-save',
-					handler : function() {
-						alert('save')
-					}
-				} ]
-			});
-		});
-	</script>
+
+
+
+
+	<!-- sitemesh 提取区块 -->
+	<breadcrumb>
+	<li><i class="icon-home home-icon"></i> <a href="/">首页</a></li>
+	<li class="active">产品类别</li>
+	</breadcrumb>
+	<cht> 首页 <small> <i class="icon-double-angle-right"></i> 产品类别管理
+	</small> </cht>
+	<!-- ./sitemesh 替换区块 -->
 </body>
 </html>
+

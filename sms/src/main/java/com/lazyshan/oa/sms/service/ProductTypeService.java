@@ -3,6 +3,7 @@ package com.lazyshan.oa.sms.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,8 @@ import com.lazyshan.oa.sms.models.ProductType;
 public class ProductTypeService extends BaseService {
 	@Resource
 	private ProductTypeDao productTypeDao;
-	public List<ProductType> listProductTypes(){
-		return productTypeDao.list(); 
+	@Transactional(Transactional.TxType.SUPPORTS)
+	public List<ProductType> nestedListAllProductType(){
+		return productTypeDao.nestedListAllProductType();
 	}
 }
