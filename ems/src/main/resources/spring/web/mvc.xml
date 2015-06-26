@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="requestContextAttribute" value="rc" />
+	</bean>
+	
+	<mvc:resources mapping="/blank.html" location="/html/ace/" />
+	<mvc:resources mapping="/buttons.html" location="/html/ace/" />
+	<mvc:resources mapping="/calendar.html" location="/html/ace/" />
+	<mvc:resources mapping="/dropzone.html" location="/html/ace/" />
+	<mvc:resources mapping="/elements.html" location="/html/ace/" />
+	<mvc:resources mapping="/error-404.html" location="/html/ace/" />
+	<mvc:resources mapping="/error-500.html" location="/html/ace/" />
+	<mvc:resources mapping="/faq.html" location="/html/ace/" />
+	<mvc:resources mapping="/form-elements.html" location="/html/ace/" />
+	<mvc:resources mapping="/form-wizard.html" location="/html/ace/" />
+	<mvc:resources mapping="/gallery.html" location="/html/ace/" />
+	<mvc:resources mapping="/grid.html" location="/html/ace/" />
+	<mvc:resources mapping="/invoice.html" location="/html/ace/" />
+	<mvc:resources mapping="/inbox.html" location="/html/ace/" />
+	<mvc:resources mapping="/index.html" location="/html/ace/" />
+	<mvc:resources mapping="/jqgrid.html" location="/html/ace/" />
+	<mvc:resources mapping="/jquery-ui.html" location="/html/ace/" />
+	<mvc:resources mapping="/login.html" location="/html/ace/" />
+	<mvc:resources mapping="/nestable-list.html" location="/html/ace/" />
+	<mvc:resources mapping="/pricing.html" location="/html/ace/" />
+	<mvc:resources mapping="/profile.html" location="/html/ace/" />
+	<mvc:resources mapping="/tables.html" location="/html/ace/" />
+	<mvc:resources mapping="/timeline.html" location="/html/ace/" />
+	<mvc:resources mapping="/treeview.html" location="/html/ace/" />
+	<mvc:resources mapping="/typography.html" location="/html/ace/" />
+	<mvc:resources mapping="/widgets.html" location="/html/ace/" />
+	<mvc:resources mapping="/wysiwyg.html" location="/html/ace/" />
+	
+
+
+	<context:component-scan base-package="com.lazyshan.oa.sms.controllers"></context:component-scan>
+	<mvc:annotation-driven />
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+	<!-- <property name="url" value="jdbc:mysql://localhost:3306/lazyshan"> -->
+	<!-- </property> -->
+	<!-- <property name="username" value="lazyshan"></property> -->
+	<!-- <property name="password" value="lazyshan"></property> -->
+	<!-- </bean> -->
+	<!-- <bean id="sessionFactory" -->
+	<!-- class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> -->
+	<!-- <property name="dataSource"> -->
+	<!-- <ref bean="dataSource" /> -->
+	<!-- </property> -->
+	<!-- <property name="hibernateProperties"> -->
+	<!-- <props> -->
+	<!-- <prop key="hibernate.dialect"> -->
+	<!-- org.hibernate.dialect.MySQLDialect -->
+	<!-- </prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- <property name="packagesToScan"> -->
+	<!-- <value>com.lazyshan.oa.lms.model,com.lazyshan.oa.lms.model</value> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+	<!-- <bean id="transactionManager" -->
+	<!-- class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
+	<!-- <property name="sessionFactory" ref="sessionFactory" /> -->
+	<!-- </bean> -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+
+</beans>

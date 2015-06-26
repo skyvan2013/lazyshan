@@ -1,0 +1,41 @@
+
+
+<sitemesh>
+	<mapping>
+		<path>/*</path>
+		<decorator>/sitemesh/ACEdecorator.html</decorator>
+	</mapping>
+	<mapping path="/jsp/*" exclue="true" />
+	
+	<content-processor>
+		<tag-rule-bundle class="com.lazyshan.oa.sms.common.MyTagRuleBundle" />
+	</content-processor>
+
+
+
+	<mapping path="/blank.html" exclue="true" />
+	<mapping path="/buttons.html" exclue="true" />
+	<mapping path="/calendar.html" exclue="true" />
+	<mapping path="/dropzone.html" exclue="true" />
+	<mapping path="/elements.html" exclue="true" />
+	<mapping path="/error-404.html" exclue="true" />
+	<mapping path="/error-500.html" exclue="true" />
+	<mapping path="/form-elements.html" exclue="true" />
+	<mapping path="/form-wizard.html" exclue="true" />
+	<mapping path="/gallery.html" exclue="true" />
+	<mapping path="/grid.html" exclue="true" />
+	<mapping path="/inbox.html" exclue="true" />
+	<mapping path="/index.html" exclue="true" />
+	<mapping path="/jqgrid.html" exclue="true" />
+	<mapping path="/invoice.html" exclue="true" />
+	<mapping path="/jquery-ui.html" exclue="true" />
+	<mapping path="/login.html" exclue="true" />
+	<mapping path="/nestable-list.html" exclue="true" />
+	<mapping path="/profile.html" exclue="true" />
+	<mapping path="/tables.html" exclue="true" />
+	<mapping path="/timeline.html" exclue="true" />
+	<mapping path="/treeview.html" exclue="true" />
+	<mapping path="/typography.html" exclue="true" />
+	<mapping path="/widgets.html" exclue="true" />
+	<mapping path="/wysiwyg.html" exclue="true" />
+</sitemesh>
