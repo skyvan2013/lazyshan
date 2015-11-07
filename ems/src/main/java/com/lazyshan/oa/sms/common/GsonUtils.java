@@ -22,16 +22,16 @@ public class GsonUtils {
 	}
 	
 
-	public static void main(String[] args) {
-		ProductType p = new ProductType();
-		p.setTypeId(1);
-		p.setPosition(1);
-		p.setProductType(p);
-		p.setTypeLevel(1);
-		p.setTypeName("测速");
-		p.setDesc("测试第三方刷单发斯蒂芬|");
-		System.out.println(GsonUtils.toJson(p,"productType"));
-	}
+//	public static void main(String[] args) {
+//		ProductType p = new ProductType();
+//		p.setTypeId(1);
+//		p.setPosition(1);
+//		p.setParentProductType(p);
+//		p.setTypeLevel(1);
+//		p.setTypeName("测速");
+//		p.setDesc("测试第三方刷单发斯蒂芬|");
+//		System.out.println(GsonUtils.toJson(p,"productType"));
+//	}
 }
 
 class PropertyExclusionStrategy implements ExclusionStrategy {

@@ -27,8 +27,8 @@ public class ProductTypeController extends BaseController {
 	@RequestMapping("/list.json")
 	@ResponseBody
 	public String ajaxListData() {
-		List<ProductType> pts = productTypeService.nestedListAllProductType();
-		return GsonUtils.toJson(pts, "productType");
+		return productTypeService.nestedListAllProductType();
 	}
+	
 
 }

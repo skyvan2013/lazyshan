@@ -20,7 +20,7 @@ public class ProductTypeDaoImpl extends BaseDao<ProductType> implements ProductT
 	public List<ProductType> nestedListAllProductType() {
 		DetachedCriteria dc = DetachedCriteria.forClass(entityClass);
 		dc.add(Restrictions.eq("typeLevel", 1));
-		dc.setFetchMode("productType", FetchMode.DEFAULT);
+		dc.setFetchMode("productTypes", FetchMode.SELECT);
 		List<ProductType> productTypes = (List<ProductType>) getHibernateTemplate().findByCriteria(dc);
 		return productTypes;
 	}
