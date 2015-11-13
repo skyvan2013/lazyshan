@@ -119,6 +119,7 @@
 	<cht> 首页 <small> <i class="icon-double-angle-right"></i>
 		产品类别管理
 	</small> </cht>
+	<menuid>menu_pt_manage</menuid>
 	<!-- ./sitemesh 替换区块 -->
 </body>
 </html>

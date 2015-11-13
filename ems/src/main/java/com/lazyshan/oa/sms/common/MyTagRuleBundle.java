@@ -12,6 +12,7 @@ public class MyTagRuleBundle implements TagRuleBundle {
 		//content head title
 		defaultState.addRule("cht", new ExportTagToContentRule(siteMeshContext,contentProperty.getChild("cht"), false));
 		defaultState.addRule("breadcrumb", new ExportTagToContentRule(siteMeshContext,contentProperty.getChild("breadcrumb"), false));
+		defaultState.addRule("menuid", new ExportTagToContentRule(siteMeshContext,contentProperty.getChild("menuid"), false));
 	}
 	@Override
 	public void cleanUp(State defaultState, ContentProperty contentProperty, SiteMeshContext siteMeshContext) {

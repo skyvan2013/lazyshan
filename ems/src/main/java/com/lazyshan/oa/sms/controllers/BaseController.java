@@ -12,7 +12,7 @@ import com.lazyshan.oa.sms.beans.SimulatedData;
 
 public class BaseController {
 	@Resource
-	private SimulatedData simulatedData;
+	public SimulatedData simulatedData;
 	
 	@Resource
 	protected HttpServletRequest request;
