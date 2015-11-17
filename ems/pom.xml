@@ -116,7 +116,7 @@
 						<port>80</port>
 					</httpConnector>
 					<webApp>
-						<contextPath>/sss</contextPath>
+						<contextPath>/</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>
