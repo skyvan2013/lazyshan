@@ -111,6 +111,14 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.3.0.v20150612</version>
+				<configuration>
+					<httpConnector>
+						<port>80</port>
+					</httpConnector>
+					<webApp>
+						<contextPath>/sss</contextPath>
+					</webApp>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
