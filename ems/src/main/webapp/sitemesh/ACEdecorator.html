@@ -72,6 +72,7 @@
 						+ "<"+"script>");
 </script>
 <script src="/statics/assets/js/bootstrap.min.js"></script>
+<!-- 自动完成组件 by skyvan -->
 <script src="/statics/assets/js/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
@@ -79,13 +80,14 @@
 <!--[if lte IE 8]>
 			  <script src="/statics/assets/js/excanvas.min.js"></script>
 			<![endif]-->
+			
 
 <script src="/statics/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="/statics/assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="/statics/assets/js/jquery.slimscroll.min.js"></script>
-<script src="/statics/assets/js/jquery.easy-pie-chart.min.js"></script>
-<script src="/statics/assets/js/jquery.sparkline.min.js"></script>
-<script src="/statics/assets/js/flot/jquery.flot.min.js"></script>
+<script src="/statics/assets/js/jquery.ui.touch-punch.min.js"></script> <!-- 移动设备触摸支持 -->
+<script src="/statics/assets/js/jquery.slimscroll.min.js"></script> <!-- 滚动条插件 -->
+<script src="/statics/assets/js/jquery.easy-pie-chart.min.js"></script> <!-- 饼图插件 -->
+<script src="/statics/assets/js/jquery.sparkline.min.js"></script>  <!-- 曲线图插件 -->
+<script src="/statics/assets/js/flot/jquery.flot.min.js"></script>  <!-- 也是一个统计图插件 -->
 <script src="/statics/assets/js/flot/jquery.flot.pie.min.js"></script>
 <script src="/statics/assets/js/flot/jquery.flot.resize.min.js"></script>
 
@@ -93,10 +95,11 @@
 
 <script src="/statics/assets/js/ace-elements.min.js"></script>
 <script src="/statics/assets/js/ace.min.js"></script>
-<sitemesh:write property="head"></sitemesh:write>
 <link rel="stylesheet" href="/statics/assets/css/ace.min.css" />
 <link rel="stylesheet" href="/statics/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="/statics/assets/css/ace-skins.min.css" />
+<sitemesh:write property="head"></sitemesh:write>
+<link href="/statics/css/main.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -125,7 +128,6 @@
 						class="dropdown-toggle" href="#"> <i class="icon-tasks"></i> <span
 							class="badge badge-grey">4</span>
 					</a>
-
 						<ul
 							class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
 							<li class="dropdown-header"><i class="icon-ok"></i> 还有4个任务完成</li>
@@ -293,6 +295,7 @@
 			<!-- /.navbar-header -->
 		</div>
 		<!-- /.container -->
+		
 	</div>
 
 	<div class="main-container" id="main-container">
@@ -595,6 +598,7 @@
 					</div>
 					<!-- /.row -->
 				</div>
+				
 				<!-- /.page-content -->
 			</div>
 			<!-- /.main-content -->
