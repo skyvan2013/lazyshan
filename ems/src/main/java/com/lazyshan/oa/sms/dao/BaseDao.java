@@ -1,21 +1,8 @@
 package com.lazyshan.oa.sms.dao;
 
-import java.lang.reflect.ParameterizedType;
+import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import org.springframework.orm.hibernate4.HibernateOperations;
 
-import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
-
-public class BaseDao<T> extends HibernateDaoSupport {
-	protected Class<T> entityClass;
-	{
-		entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-	}
-
-	@Resource
-	private void injectSessionFactory(SessionFactory sesssionFactory) {
-		super.setSessionFactory(sesssionFactory);
-	}
+public interface BaseDao<T> extends HibernateOperations{
 }

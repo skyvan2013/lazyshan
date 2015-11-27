@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lazyshan.oa.sms.models.ProductType;
 
-public interface ProductTypeDao {
+public interface ProductTypeDao extends BaseDao<ProductType> {
 	/**
 	 * 嵌套独处所有产品类别
 	 * 

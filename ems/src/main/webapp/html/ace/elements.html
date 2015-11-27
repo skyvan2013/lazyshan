@@ -1723,7 +1723,8 @@
 					$.gritter.add({
 						title: 'This is a centered notification',
 						text: 'Just add a "gritter-center" class_name to your $.gritter.add or globally to $.gritter.options.class_name',
-						class_name: 'gritter-info gritter-center' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+						class_name: 'gritter-info gritter-center' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : ''),
+						sticky:true
 					});
 			
 					return false;

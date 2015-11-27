@@ -1,28 +1,27 @@
 package com.lazyshan.oa.sms.models;
 
-
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
 /**
  * ProductType entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "product_type", catalog = "lazyshan", uniqueConstraints = @UniqueConstraint(columnNames = "typeName"))
+@Table(name = "product_type", catalog = "ems")
 public class ProductType implements java.io.Serializable {
 
 	// Fields
@@ -30,15 +29,15 @@ public class ProductType implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2501440423971060619L;
-	private Integer typeId;
+	private static final long serialVersionUID = -8512297403792085448L;
+	private Integer id;
 	private Timestamp version;
-	private ProductType parentProductType;
+	private ProductType parentType;
 	private String typeName;
-	private Integer typeLevel;
-	private Integer position;
-	private String desc;
-	private Set<ProductType> productTypes = new HashSet<ProductType>(0);
+	private Timestamp createTime;
+	private Integer orderValue;
+	private Set<ProductType> subTypes = new HashSet<ProductType>(0);
+	private Set<Product> products = new HashSet<Product>(0);
 
 	// Constructors
 
@@ -47,38 +46,36 @@ public class ProductType implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ProductType(String typeName, Integer typeLevel, Integer position) {
+	public ProductType(String typeName, Timestamp createTime, Integer orderValue) {
 		this.typeName = typeName;
-		this.typeLevel = typeLevel;
-		this.position = position;
+		this.createTime = createTime;
+		this.orderValue = orderValue;
 	}
 
 	/** full constructor */
-	public ProductType(ProductType parentProductType, String typeName,
-			Integer typeLevel, Integer position, String desc,
-			Set<ProductType> productTypes) {
-		this.parentProductType = parentProductType;
+	public ProductType(ProductType parentType, String typeName, Timestamp createTime, Integer orderValue, Set<ProductType> subTypes, Set<Product> products) {
+		this.parentType = parentType;
 		this.typeName = typeName;
-		this.typeLevel = typeLevel;
-		this.position = position;
-		this.desc = desc;
-		this.productTypes = productTypes;
+		this.createTime = createTime;
+		this.orderValue = orderValue;
+		this.subTypes = subTypes;
+		this.products = products;
 	}
 
 	// Property accessors
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "typeId", unique = true, nullable = false)
-	public Integer getTypeId() {
-		return this.typeId;
+	@GeneratedValue
+	@Column(name = "id", unique = true, nullable = false)
+	public Integer getId() {
+		return this.id;
 	}
 
-	public void setTypeId(Integer typeId) {
-		this.typeId = typeId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Version
-	@Column(name = "version", length = 19)
+	@Column(name = "version", nullable = false, length = 19)
 	public Timestamp getVersion() {
 		return this.version;
 	}
@@ -88,16 +85,16 @@ public class ProductType implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "parentTypeId")
-	public ProductType getParentProductType() {
-		return this.parentProductType;
+	@JoinColumn(name = "parent_type_id")
+	public ProductType getParentType() {
+		return this.parentType;
 	}
 
-	public void setParentProductType(ProductType parentProductType) {
-		this.parentProductType = parentProductType;
+	public void setParentType(ProductType parentType) {
+		this.parentType = parentType;
 	}
 
-	@Column(name = "typeName", unique = true, nullable = false, length = 20)
+	@Column(name = "type_name", nullable = false, length = 20)
 	public String getTypeName() {
 		return this.typeName;
 	}
@@ -106,40 +103,46 @@ public class ProductType implements java.io.Serializable {
 		this.typeName = typeName;
 	}
 
-	@Column(name = "typeLevel", nullable = false)
-	public Integer getTypeLevel() {
-		return this.typeLevel;
+	@Column(name = "create_time", nullable = false, length = 19)
+	public Timestamp getCreateTime() {
+		return this.createTime;
 	}
 
-	public void setTypeLevel(Integer typeLevel) {
-		this.typeLevel = typeLevel;
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
 	}
 
-	@Column(name = "position", nullable = false)
-	public Integer getPosition() {
-		return this.position;
+	@Column(name = "order_value", nullable = false)
+	public Integer getOrderValue() {
+		return this.orderValue;
 	}
 
-	public void setPosition(Integer position) {
-		this.position = position;
+	public void setOrderValue(Integer orderValue) {
+		this.orderValue = orderValue;
 	}
 
-	@Column(name = "desc", length = 45)
-	public String getDesc() {
-		return this.desc;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parentType")
+	@OrderBy("orderValue")
+	public Set<ProductType> getSubTypes() {
+		return this.subTypes;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setSubTypes(Set<ProductType> subTypes) {
+		this.subTypes = subTypes;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parentProductType")
-	public Set<ProductType> getProductTypes() {
-		return this.productTypes;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "belongToType")
+	public Set<Product> getProducts() {
+		return this.products;
 	}
 
-	public void setProductTypes(Set<ProductType> productTypes) {
-		this.productTypes = productTypes;
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	@Override
+	public String toString() {
+		return "【id:" + id + ",typeName:" + typeName+",orderValue:"+orderValue+"】";
 	}
 
 }
